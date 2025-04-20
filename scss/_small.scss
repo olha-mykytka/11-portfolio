@@ -1,0 +1,241 @@
+/* Prevent adjustments of font size after orientation changes. */
+html {
+  -moz-text-size-adjust: none;
+  -webkit-text-size-adjust: none;
+  text-size-adjust: none;
+  height: 100%;
+  scroll-behavior: smooth;
+}
+
+/* Box layout and reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: $bodyFont;
+  font-weight: $normalWeight;
+  color: $fontColor;
+  background-color: $primaryColor;
+  line-height: 1.6;
+}
+
+// HEADER
+#headerWrapper {
+  background-color: darken($primaryColor, 5%);
+  color: $fontColor;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem $gutter;
+
+  h1 {
+    font-family: $displayFont;
+    font-size: 1.6rem;
+    font-weight: $boldWeight;
+    margin: 0;
+    letter-spacing: 1px;
+    color: $secondaryColor;
+  }
+}
+
+// NAVIGATION
+#navWrapper {
+  background-color: $secondaryColor;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+nav {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0.5rem 0;
+
+  a {
+    text-decoration: none;
+    color: white;
+    padding: 0.6rem 1rem;
+    font-size: 0.9rem;
+    font-weight: $mediumWeight;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    img {
+      width: 28px;
+      margin-bottom: 0.25rem;
+    }
+
+    span {
+      display: block;
+    }
+
+    &:hover {
+      background-color: lighten($secondaryColor, 10%);
+    }
+  }
+
+  a.active {
+    background-color: darken($secondaryColor, 10%);
+  }
+}
+
+// UNIVERSAL SECTION STYLING
+section {
+  min-height: 100vh;
+  padding: 3rem 1.5rem;
+  background-color: lighten($primaryColor, 2%);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+
+  h1 {
+    font-size: 1.5rem;
+    color: $secondaryColor;
+    margin-bottom: 1rem;
+  }
+
+  p {
+    margin-bottom: 1rem;
+    font-size: 1.05rem;
+  }
+
+  img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  }
+}
+
+// CARD-BASED SECTIONS (EDUCATION, WEB, EVENT)
+.card-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+  margin-top: 1.5rem;
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.card {
+  background-color: lighten($secondaryColor, 10%);
+  border-radius: 10px;
+  padding: 1rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  text-align: left;
+
+  img {
+    width: 100%;
+    height: auto;
+    border-radius: 6px;
+    margin-bottom: 0.75rem;
+  }
+
+  h6 {
+    font-size: 1rem;
+    font-weight: $boldWeight;
+    margin-bottom: 0.5rem;
+    color: $primaryColor;
+  }
+
+  p {
+    font-size: 0.95rem;
+    line-height: 1.4;
+    color: $fontColor;
+  }
+}
+
+// CONTACT FORM STYLING
+#contact {
+  background-color: lighten($primaryColor, 3%);
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 600px;
+  margin: 2rem auto 0;
+
+  label {
+    font-size: 0.95rem;
+    font-weight: $mediumWeight;
+    color: $fontColor;
+  }
+
+  input,
+  textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border-radius: 6px;
+    border: 1px solid darken($primaryColor, 10%);
+    font-size: 1rem;
+    background-color: white;
+    color: $fontColor;
+  }
+
+  textarea {
+    min-height: 120px;
+    resize: vertical;
+  }
+
+  button {
+    background-color: $secondaryColor;
+    color: white;
+    font-size: 1rem;
+    padding: 0.75rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+
+    &:hover {
+      background-color: darken($secondaryColor, 10%);
+    }
+  }
+}
+
+// FOOTER
+#footerWrapper {
+  background-color: $primaryColor;
+  margin-top: 2rem;
+}
+
+footer {
+  padding: 1rem $gutter;
+  text-align: center;
+  color: $fontColor;
+
+  div {
+    display: flex;
+    gap: $gutter;
+    justify-content: center;
+    margin-bottom: 1rem;
+
+    a {
+      display: inline-block;
+      width: 24px;
+      height: 24px;
+
+      img {
+        width: 100%;
+        height: auto;
+      }
+    }
+  }
+
+  p {
+    margin: 0;
+    font-weight: $lightWeight;
+  }
+}

@@ -1,0 +1,26 @@
+// header, nav, main, footer {
+//   max-width: 60rem;
+//   margin: auto;
+// }
+
+body {
+  display: grid;
+  grid-template-columns: 250px auto;
+}
+#navWrapper {
+  grid-row: 1 / span 3;
+  position: relative;
+}
+nav {
+flex-direction: column;
+position: fixed;
+height: 100vh;
+justify-content: center;
+gap: .5rem;
+width: 250px;
+}
+nav a {
+  flex: none;
+width: 100%;
+text-align: right;
+}

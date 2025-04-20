@@ -1,0 +1,13 @@
+header {
+    padding: 2rem $gutter;
+    h1 {
+        font-size: 2rem;
+    }
+}
+
+nav a {
+    img {
+        display: none;
+    }
+    span{display: block;}
+}
