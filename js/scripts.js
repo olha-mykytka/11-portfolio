@@ -1,40 +1,37 @@
-// inject current year to footer
-const rightNow = new Date();
-const year = rightNow.getFullYear();
-document.querySelector('#year').textContent = year;
+// Update year in footer
+const yearSpan = document.querySelector('#year');
+const currentYear = new Date().getFullYear();
+yearSpan.textContent = currentYear;
 
+// Toggle mobile nav menu
+const ham = document.querySelector('.ham');
+const pageWrapper = document.querySelector('.pageWrapper');
 
-// get me a list of all the items to watch
-const myListOfItems = document.querySelectorAll('section')
+ham.addEventListener('click', () => {
+  pageWrapper.classList.toggle('moveOver');
+});
 
-// a comma deliniated list of name/value pairs controlling how the observer works
-let observerOptions = {
-    //null is the default and references the viewport
-    root: null,
-    //alters the viewport. negative values decrease the size.
-    rootMargin: '0px 0px 0px 0px',
-    //0 is barely showing, 1 is fully showing
-    threshold: 0.3
-  }
+// Scroll-based wayfinding using Intersection Observer
+const sections = document.querySelectorAll('section');
+const navLinks = document.querySelectorAll('nav a');
 
-// AllItems is a list of all elements being watched
-const myObserver = new IntersectionObserver(allItems => {
-    allItems.forEach(singleItem => {
-        if (singleItem.isIntersecting){
-            hiliteNav(singleItem.target);
+const observerOptions = {
+  threshold: 0.6
+};
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === `#${entry.target.id}`) {
+          link.classList.add('active');
         }
-    })
-}, observerOptions)
+      });
+    }
+  });
+}, observerOptions);
 
-// function to hilight the current navigation items
-function hiliteNav(x) {
-	document.querySelector('.active').classList.remove('active');
-	let theid = x.getAttribute('id');
-	let newActiveLink = document.querySelector(`[href="#${theid}"]`)
-	newActiveLink.classList.add('active');
-}
-
-//call the function for each element in the list
-myListOfItems.forEach(item => {
-    myObserver.observe(item)
+sections.forEach(section => {
+  observer.observe(section);
 });
